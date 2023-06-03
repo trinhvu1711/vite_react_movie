@@ -8,6 +8,9 @@ export default {
     extend: {
       fontFamily: {
         'body':['DM sans, sans-serif']
+      },
+      colors: {
+        primary: '#F62682'
       }
     }
   },
