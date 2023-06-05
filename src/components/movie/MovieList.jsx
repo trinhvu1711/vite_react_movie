@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper.css'
 import MovieCard from './MovieCard'
-import { fetcher } from '../../config'
+import { apiKey, fetcher } from '../../config'
 import useSWR from 'swr'
 import { useSelector, useDispatch } from 'react-redux'
 import { setPlayingMovies, setTopRatedMovies, setUpcomingMovies } from '../../features/MovieListSlice'
@@ -9,7 +9,7 @@ import { useEffect } from 'react'
 // https://api.themoviedb.org/3/movie/now_playing
 // api_key= 0dabe49b36bf66c058d61be4df8b7f74
 const MovieList = ({ type }) => {
-  const { data } = useSWR(`https://api.themoviedb.org/3/movie/${type}?api_key=0dabe49b36bf66c058d61be4df8b7f74`, fetcher)
+  const { data } = useSWR(`https://api.themoviedb.org/3/movie/${type}?api_key=${apiKey}`, fetcher)
   const state = useSelector((state) => state.MovieList)
   const dispatch = useDispatch()
   useEffect(() => {
