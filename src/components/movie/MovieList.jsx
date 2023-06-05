@@ -4,25 +4,30 @@ import MovieCard from './MovieCard'
 import { fetcher } from '../../config'
 import useSWR from 'swr'
 import { useSelector, useDispatch } from 'react-redux'
-import { setPlayingMovies } from '../../features/MovieListSlice'
+import { setPlayingMovies, setTopRatedMovies, setUpcomingMovies } from '../../features/MovieListSlice'
 import { useEffect } from 'react'
 // https://api.themoviedb.org/3/movie/now_playing
 // api_key= 0dabe49b36bf66c058d61be4df8b7f74
-const MovieList = () => {
-  const { data, error, isLoading } = useSWR('https://api.themoviedb.org/3/movie/now_playing?api_key=0dabe49b36bf66c058d61be4df8b7f74', fetcher)
+const MovieList = ({ type }) => {
+  const { data } = useSWR(`https://api.themoviedb.org/3/movie/${type}?api_key=0dabe49b36bf66c058d61be4df8b7f74`, fetcher)
   const state = useSelector((state) => state.MovieList)
   const dispatch = useDispatch()
   useEffect(() => {
     if (data && data.results) {
-      dispatch(setPlayingMovies(data.results))
+      if (type === 'now_playing') {
+        dispatch(setPlayingMovies(data.results))
+      }
+      else if (type === 'top_rated') dispatch(setTopRatedMovies(data.results))
+      else if (type === 'popular') dispatch(setUpcomingMovies(data.results))
     }
-  }, [data])
+  }, [data, dispatch, type])
+  const nowData = type === 'now_playing' ? state.nowPlayingMovies : type === 'top_rated' ? state.topRatedMovies : state.upcomingMovies
   return (
     <div className="movie-list">
       <Swiper grabCursor={'true'} spaceBetween={40} slidesPerView={'auto'}>
-        {state.nowPlayingMovies && state.nowPlayingMovies.map((item) => (
+        {nowData.length>0 && nowData.map((item) => (
           <SwiperSlide key={item.id}>
-            <MovieCard></MovieCard>
+            <MovieCard item={item}></MovieCard>
           </SwiperSlide>
         ))}
       </Swiper>
