@@ -1,5 +1,5 @@
-# Simple Project with Vite, React.js, Redux, and Redux Toolkit
-This is a simple project template using Vite, React.js, Redux, and Redux Toolkit.
+# Simple Movie Project with Vite, React.js, Redux, and Redux Toolkit
+This is a simple movie project template using Vite, React.js, Redux, and Redux Toolkit.
 ## Features
 - Uses Vite for fast development setup
 - React.js for building user interfaces
