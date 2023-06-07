@@ -26,11 +26,18 @@ const MoviePage = () => {
         <button className='text-white p-4 bg-primary' onClick={handleSearch}>search</button>
       </div>
       <div className="grid grid-cols-4 gap-10">
-        {state.movieSearch.length > 0 && state.movieSearch.map((item) => {
+        {state.movieSearch.length <= 0 && state.nowPlayingMovies.map((item) => {
           if (!item || isNaN(item.id)) {
-            return null
+            return null;
           }
-          return <MovieCard key={item.id} item={item}></MovieCard>
+          return <MovieCard key={item.id} item={item} />;
+        })}
+        {state.movieSearch.length > 0 &&
+        state.movieSearch.map((item) => {
+          if (!item || isNaN(item.id)) {
+            return null;
+          }
+          return <MovieCard key={item.id} item={item} />;
         })}
       </div>
     </div>
