@@ -22,4 +22,17 @@
     .banner .swiper {
         height: 100%;
     }
+
+    .pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+        user-select: none;
+
+        .active {
+            @apply text-primary
+        }
+    }
 }
