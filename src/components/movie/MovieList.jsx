@@ -4,7 +4,7 @@ import MovieCard from './MovieCard'
 import { apiKey, fetcher } from '../../config'
 import useSWR from 'swr'
 import { useSelector, useDispatch } from 'react-redux'
-import { setPlayingMovies, setTopRatedMovies, setUpcomingMovies } from '../../features/MovieListSlice'
+import { setPlayingMovies, setPlayingMoviesTotalPage, setTopRatedMovies, setUpcomingMovies } from '../../features/MovieListSlice'
 import { useEffect } from 'react'
 // https://api.themoviedb.org/3/movie/now_playing
 // api_key= 0dabe49b36bf66c058d61be4df8b7f74
@@ -16,6 +16,7 @@ const MovieList = ({ type }) => {
     if (data && data.results) {
       if (type === 'now_playing') {
         dispatch(setPlayingMovies(data.results))
+        dispatch(setPlayingMoviesTotalPage(data.total_pages))
       }
       else if (type === 'top_rated') dispatch(setTopRatedMovies(data.results))
       else if (type === 'popular') dispatch(setUpcomingMovies(data.results))
