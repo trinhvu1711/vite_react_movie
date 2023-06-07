@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import MovieCard from '../components/movie/MovieCard'
 import { useEffect, useState } from 'react'
-import { apiKey, fetcher } from '../config'
+import { api, apiKey, fetcher } from '../config'
 import useSWR from 'swr'
 import { setMovieSearch } from '../features/MovieListSlice'
 import ReactPaginate from 'react-paginate'
@@ -12,7 +12,7 @@ const MoviePage = () => {
   const [totalPages, setTotalPages] = useState(1)
   const [query, setQuery] = useState('')
   const dispatch = useDispatch()
-  const apiURL = query === '' ? `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&page=${currentPage}` : `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&page=${currentPage}`;
+  const apiURL = query === '' ? api.getSearchNowPlayingVideo(currentPage) : api.getSearchVideo(currentPage, query)
   const { data } = useSWR(apiURL, fetcher)
   useEffect(() => {
     if (data && data.results && data.results.length > 0) {
