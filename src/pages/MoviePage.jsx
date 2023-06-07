@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import MovieCard from '../components/movie/MovieCard'
 import { useEffect, useState } from 'react'
-import { api, apiKey, fetcher } from '../config'
+import { api, fetcher } from '../config'
 import useSWR from 'swr'
 import { setMovieSearch } from '../features/MovieListSlice'
 import ReactPaginate from 'react-paginate'

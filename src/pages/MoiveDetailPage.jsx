@@ -66,7 +66,7 @@ function MovieVideo() {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(setMovieVideo(data))
-  }, [])
+  }, [data, dispatch])
   if (!data) return null
   const { results } = data
   if (!results || results.length <= 0) return null
