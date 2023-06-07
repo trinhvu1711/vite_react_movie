@@ -20,7 +20,6 @@ function App() {
           ></Route>
           <Route path='movies' element={<MoviePage/>}></Route>
           <Route path='movie/:movieId' element={<MoiveDetailPage/>}></Route>
-
         </Route>
       </Routes>
     </Provider>

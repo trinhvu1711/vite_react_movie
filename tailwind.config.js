@@ -10,7 +10,8 @@ export default {
         'body':['DM sans, sans-serif']
       },
       colors: {
-        primary: '#F62682'
+        primary: '#F62682',
+        secondary: '#8F00FF'
       }
     }
   },
